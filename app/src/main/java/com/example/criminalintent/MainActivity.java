@@ -8,21 +8,22 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    FragmentManager fragmentManager = getSupportFragmentManager();
-    Fragment currentFragment = fragmentManager.findFragmentById(R.id.fragment_container);
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(currentFragment == null) {
-            CrimeFragment fragment = new CrimeFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment =
+                fragmentManager.findFragmentById(R.id.fragment_container);
+
+        if (currentFragment == null) {
+            Crime CrimeListFragment fragment = new CrimeFragment()
+            CrimeListFragment.newInstance();
             fragmentManager
                     .beginTransaction()
                     .add(R.id.fragment_container, fragment)
                     .commit();
         }
     }
-
 }
